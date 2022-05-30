@@ -8,7 +8,7 @@ export default function TestPage() {
         <main style={{ padding: '1rem 0' }}>
             <h2>
                 Test Page
-                {params.restaurantId}
+                {params.deviceId}
 
             </h2>
 

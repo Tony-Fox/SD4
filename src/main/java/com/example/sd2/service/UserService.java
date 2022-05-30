@@ -1,17 +1,14 @@
 package com.example.sd2.service;
 
 import com.example.sd2.dtos.UserDTO;
-import com.example.sd2.entity.Restaurant;
 import com.example.sd2.entity.User;
 import com.example.sd2.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 import java.util.logging.FileHandler;
 
 @Service

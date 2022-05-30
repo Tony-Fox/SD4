@@ -1,7 +1,6 @@
 package com.example.sd2.service;
 
-import com.example.sd2.dtos.ProductDTO;
-import com.example.sd2.dtos.RestaurantDTO;
+import com.example.sd2.dtos.SensorDTO;
 import org.springframework.stereotype.Service;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -30,10 +29,10 @@ public class EmailService {
 	}
 
 	/**
-	 * Sends an email with the freshly created product
-	 * @param dto the created product
+	 * Sends an email with the freshly created sensor
+	 * @param dto the created sensor
 	 */
-	public void sendMail(ProductDTO dto, String email){
+	public void sendMail(SensorDTO dto, String email){
 
 		logger.info("Sending email to: " + email);
 
@@ -80,10 +79,10 @@ public class EmailService {
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
 			// Set Subject: header field
-			message.setSubject("New Food!");
+			message.setSubject("New Sensor!");
 
 			// Now set the actual message
-			message.setText("New Food Added: " + dto.toString());
+			message.setText("New Sensor Added: " + dto.toString());
 
 			System.out.println("sending...");
 			// Send message

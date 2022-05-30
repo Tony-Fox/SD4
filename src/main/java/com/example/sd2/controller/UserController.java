@@ -59,7 +59,7 @@ public class UserController {
 		if(service.checkCredential(dto.getUsername(), dto.getPassword())) {
 			if (service.findByUsername(dto.getUsername()).isAdmin())
 				return ResponseEntity.ok(new Token("administrator"));
-			return ResponseEntity.ok(new Token("normal"));
+			return ResponseEntity.ok(new Token(dto.getUsername()));
 
 		}
 		else

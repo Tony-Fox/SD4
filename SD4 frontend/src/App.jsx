@@ -9,13 +9,26 @@ export default function App() {
         return <Login setToken={setToken}/>
     }
 
+
+    const handleClick = (event) => {
+        event.preventDefault();
+        sessionStorage.removeItem("token");
+        // sessionStorage.removeItem("email");
+        window.location.reload();
+    }
     return (
     <div>
-      <h1>Restaurant Manager</h1>
+      <h1>Device Manager</h1>
+        <div>
+        <button onClick={handleClick}>
+            Logout
+        </button>
+        </div>
       <nav style={{ borderBottom: 'solid 1px', paddingBottom: '1rem' }}>
-        <Link to="/restaurants">Restaurants</Link> |{' '}
-          <div style={{ display: (token === 'administrator' ? 'block' : 'none') }}><Link to="/restaurant/add">Add Restaurant</Link></div>
+        <Link to="/devices">Devices</Link> |{' '}
+          <div style={{ display: (token === 'administrator' ? 'block' : 'none') }}><Link to="/device/add">Add Device</Link></div>
       </nav>
+
       <Outlet />
     </div>
   );

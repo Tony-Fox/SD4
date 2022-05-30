@@ -2,13 +2,14 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
-import AddRestaurant from './routes/addRestaurant';
-import Restaurants from './routes/restaurants';
+import AddDevice from './routes/addDevice';
+import Devices from './routes/devices';
 import Invoice from './routes/invoice';
 import './main.css';
 import TestPage from "./routes/testPage";
-import Products from "./routes/products";
-import AddProduct from "./routes/addProduct";
+import Sensors from "./routes/sensors";
+import AddSensor from "./routes/addSensor";
+import SensorReadings from "./routes/sensorReadings";
 
 const rootElement = document.getElementById('app');
 
@@ -16,26 +17,29 @@ ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
-        <Route path="restaurant/add" element={<AddRestaurant />} />
-        <Route path="restaurants" element={<Restaurants />}>
+        <Route path="device/add" element={<AddDevice />} />
+        <Route path="devices" element={<Devices />}>
           <Route
             index
             element={
               <main style={{ padding: '1rem' }}>
-                <p>Select a restaurant.</p>
+                <p>Select a device.</p>
               </main>
             }
           />
-          <Route path=":restaurantId" element={<Products />} />
+          <Route path=":deviceId" element={<Sensors />}>
+            <Route path=":sensorId" element={<SensorReadings />} />
+            </Route>
+
             <Route
                 index
                 element={
                     <main style={{ padding: '1rem' }}>
-                        <p>Select a restaurant.</p>
+                        <p>Select a device.</p>
                     </main>
                 }
             />
-            <Route path=":restaurantId/add" element={<AddProduct />} />
+            <Route path=":deviceId/add" element={<AddSensor />} />
         </Route>
         <Route
           path="*"
