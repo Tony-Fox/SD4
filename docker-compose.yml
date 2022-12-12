@@ -1,0 +1,118 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/sd4?autoReconnect=true&useSSL=false
+    networks:
+      - ds1backend
+    depends_on:
+      - db
+  db:
+    image: mysql:5.7
+    networks:
+      - ds1backend
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: sd4
+  frontend:
+    build: "./SD4 frontend"
+    ports:
+      - "3000:3000"
+    networks:
+      - ds1backend
+
+networks:
+  ds1backend:
+
+#services:
+#  mysql-demo-integration:
+#    image: mysql
+#    build:
+#      context: ./
+#      dockerfile: ./mysql/Dockerfile
+#    container_name: mysql-demo-integration
+#    restart: always
+#    volumes:
+#      - ./mysql/finaldb.sql:/docker-entrypoint-initdb.d/1.sql
+##      - ./mysql/ds-mysql-initial-setup.sql:/docker-entrypoint-initdb.d/2.sql
+#      - mysql-demo-integration:/var/lib/mysql
+#    ports:
+#      - 3307:3306
+#    healthcheck:
+#      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+#      interval: 10s
+#      retries: 5
+#      start_period: 5s
+#      timeout: 10s
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=pass
+#    networks:
+#      assignment1-network:
+#        ipv4_address: 172.16.0.52
+#
+#  spring-demo-integration:
+#    build:
+#      context: ./
+#      dockerfile: ./spring-demo/Dockerfile
+#    container_name: spring-demo-integration
+#    restart: always
+#    volumes:
+#      - "spring-demo-integration:/spring-demo/war"
+#    environment:
+#      - DB_IP=localhost
+#      - DB_PORT=3306
+#      - DB_USER=root
+#      - DB_PASSWORD=pass
+#      - DB_DBNAME=city_db
+#    ports:
+#      - 8081:8080
+#    depends_on:
+#      mysql-demo-integration:
+#        condition: service_healthy
+#    networks:
+#      assignment1-network:
+#        ipv4_address: 172.16.0.53
+
+#
+#services:
+#
+#  tomcat-db-api:
+#    image: ds1backend
+#    ports:
+#      - "8080:8080"
+
+
+#services:
+#  web:
+#    build: ./SD4 frontend
+#    ports:
+#      - "3000:3000"
+#      - "80:80"
+#
+#  backend:
+#    build: .
+#    ports:
+#      - "8080:8080"
+#
+#  db:
+#    image: "mysql"
+#    environment:
+#      MYSQL_ROOT_PASSWORD: pass
+#      TZ: UTC
+#      DB_IP: localhost
+#      DB_PORT: 3306
+#      DB_USER: root
+#      DB_PASSWORD: pass
+#      DB_DBNAME: sd4
+#    volumes:
+#      - db-data:/foo
+#
+#volumes:
+#  db-data:
+#
+
+
